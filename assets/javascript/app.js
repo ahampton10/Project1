@@ -1,3 +1,4 @@
+
 //Searches APIs when logos are clicked 
 
 $(document).on("click", ".logos", function (event) {
