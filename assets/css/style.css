@@ -31,3 +31,7 @@ h3 {
     height: 300px;
     width: 200px;
 }
+
+#page-footer {
+    background-color: navy;
+}
