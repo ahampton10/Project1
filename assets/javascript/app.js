@@ -3,7 +3,7 @@
 
 $(document).on("click", ".logos", function (event) {
     event.preventDefault (); 
-    $("tbody").empty; 
+    $("tbody").empty (); 
     $("tmaster").empty (); 
     var input = $(this).attr("data-name"); 
     $(".ticketmaster").show (); 
