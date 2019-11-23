@@ -31,7 +31,8 @@ $(document).on("click", ".statBtn", function (event) {
         var titleTag = $("<td>").text(result[i].stats);
         var content = $("<a>").attr({"href": result[i].url, "target": "_blank", class : "statsContent"});
         var contentTag = $("<td>");
-     
+
+    
         
         content.text(result[i].content);
         
@@ -42,8 +43,6 @@ $(document).on("click", ".statBtn", function (event) {
         $("#score-table").append(rowTag)
         $("#score-table").append(titleTag)
         $("#score-table").append(contentTag)
-  
-       }
   
     }); 
   
