@@ -1,5 +1,6 @@
 body {
     background-image: url(../images/theLogo.jpeg);
+    background-size: 100%; 
     color: white;
 }
 
@@ -48,6 +49,7 @@ h3 {
     color: white;
     width: 20%; 
     margin-bottom: 5px; 
+
 }
 
 #tmaster {
@@ -59,3 +61,4 @@ h3 {
     clear: both;
     background-color: black;
 }
+
