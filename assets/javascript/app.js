@@ -22,7 +22,7 @@ $(document).on("click", ".statBtn", function (event) {
         url: queryURL, 
         method: "GET", 
 
-    }).then(function (response) {Y
+    }).then(function (response) {
        console.log(response); 
        console.log (queryURL); 
 
