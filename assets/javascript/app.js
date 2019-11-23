@@ -1,18 +1,4 @@
-//Searches APIs when logos are clicked 
-
-$(document).on("click", ".statBtn", function (event) {
-    event.preventDefault (); 
-    $("#tbody").empty (); 
-    $("#tmaster").empty (); 
-    var input = $(this).attr("data-name"); 
-    $(".ticketmaster").show (); 
-    newsAPI(input); 
-    tmAPI(input); 
-    console.log("Button Pushed!"); 
-  }); 
-  
-
-  //Calls on the live score API 
+//Calls on the live score API 
   
   function newsAPI(input) {
     var newsAPIKEY = "api-key=qieFEkfiJNxxx27yEHvLk1rDZyOKPHbI"; 
@@ -77,5 +63,6 @@ $(document).on("click", ".statBtn", function (event) {
     }
     }); 
   }
+  
   
   
