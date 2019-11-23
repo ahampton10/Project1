@@ -25,12 +25,11 @@ $(document).on("click", ".statBtn", function (event) {
        console.log(response); 
        console.log (queryURL); 
   
-       for (var i = 0; i < result.length; i++) {
-        var trTag = $("<tr>");
-        var rowTag = $("<td>");
-        var titleTag = $("<td>").text(result[i].stats);
-        var content = $("<a>").attr({"href": result[i].url, "target": "_blank", class : "statsContent"});
-        var contentTag = $("<td>");
+        // var trTag = $("<tr>");
+        // var rowTag = $("<td>");
+        // var titleTag = $("<td>").text(result[i].stats);
+        // var content = $("<a>").attr({"href": result[i].url, "target": "_blank", class : "statsContent"});
+        // var contentTag = $("<td>");
      
         
         content.text(result[i].content);
@@ -42,8 +41,6 @@ $(document).on("click", ".statBtn", function (event) {
         $("#score-table").append(rowTag)
         $("#score-table").append(titleTag)
         $("#score-table").append(contentTag)
-  
-       }
   
     }); 
   
