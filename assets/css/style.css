@@ -43,3 +43,9 @@ h3 {
     width: 100px;
     color: white;
 }
+.buynow{
+    background-color: #042244;
+    color: white;
+    width: 20%; 
+    margin-bottom: 5px; 
+}
