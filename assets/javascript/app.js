@@ -6,48 +6,99 @@ $(document).on("click", ".statBtn", function (event) {
     $("#tmaster").empty (); 
     var input = $(this).attr("data-name"); 
     $(".ticketmaster").show (); 
-    liveAPI(input); 
     tmAPI(input); 
     console.log("Button Pushed!"); 
+    buildQueryURL();
+    runSearch();
   }); 
   
   
-  //Calls on the live score API 
-  
-  function liveAPI(input) {
-    var liveAPIKEY = "&APIkey=8ef0c87feea2c18987d88b3c304eff3fae2a958f8e81673eecac0651a83bbfa1"; 
-    var queryURL = "https://allsportsapi.com/api/basketball/?met=Livescore" + liveAPIKEY + "&q=" + input; 
-  
-    $.ajax ({
-        url: queryURL, 
-        method: "GET"
-    }).then(function (response) {
-       console.log(response); 
-       console.log (queryURL); 
-  
-        // var trTag = $("<tr>");
-        // var rowTag = $("<td>");
-        // var titleTag = $("<td>").text(result[i].stats);
-        // var content = $("<a>").attr({"href": result[i].url, "target": "_blank", class : "statsContent"});
-        // var contentTag = $("<td>");
-     
-        
-        content.text(result[i].content);
-        
-      
-        contentTag.append(content);
-  
-        $("#score-table").append(trTag)
-        $("#score-table").append(rowTag)
-        $("#score-table").append(titleTag)
-        $("#score-table").append(contentTag)
-  
-    }); 
-  
-  
-    }
-    
-  //Grabbing ticket info by input
+  //Calls on the NYT API 
+  /** 
+  @returns {string} URL for NYT API based on form inputs
+  */
+ function buildQueryURL() {
+   var queryURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?";
+ 
+   var queryParams = { "api-key": "R1a31F4tBjCUaM2ho8GtIFsrSdtXt30M" };
+ 
+   queryParams.q = $('.statBtn').attr('data-name');
+ 
+   console.log("---------------\nURL: " + queryURL + "\n---------------");
+   console.log(queryURL + $.param(queryParams));
+   return queryURL + $.param(queryParams);
+ }
+ 
+ /**
+  * takes API data (JSON/object) and turns it into elements on the page
+  * @param {object} NYTData - object containing NYT API data
+  */
+ function updatePage(NYTData) {
+
+   var numArticles = 5;
+ 
+   console.log(NYTData);
+   console.log("------------------------------------");
+ 
+   for (var i = 0; i < numArticles; i++) {
+     var article = NYTData.response.docs[i];
+ 
+     var articleCount = i + 1;
+ 
+     var $articleList = $("<ul>");
+     $articleList.addClass("list-group");
+ 
+     $("#teamArticles").append($articleList);
+ 
+     var headline = article.headline;
+     var $articleListItem = $("<li class='list-group-item articleHeadline'>");
+ 
+     if (headline && headline.main) {
+       console.log(headline.main);
+       $articleListItem.append(
+         "<span class='label label-primary'>" +
+           articleCount +
+           "</span>" +
+           "<strong> " +
+           headline.main +
+           "</strong>"
+       );
+     }
+ 
+     var byline = article.byline;
+ 
+     if (byline && byline.original) {
+       console.log(byline.original);
+       $articleListItem.append("<h5>" + byline.original + "</h5>");
+     }
+ 
+     var section = article.section_name;
+     console.log(article.section_name);
+     if (section) {
+       $articleListItem.append("<h5>Section: " + section + "</h5>");
+     }
+ 
+     $articleListItem.append("<a href='" + article.web_url + "'>" + article.web_url + "</a>");
+     console.log(article.web_url);
+ 
+     $articleList.append($articleListItem);
+   }
+ }
+ 
+ function clear() {
+   $("#teamArticles").empty();
+ }
+ 
+ function runSearch() {
+   event.preventDefault();
+   clear();
+   var queryURL = buildQueryURL();
+   $.ajax({
+     url: queryURL,
+     method: "GET"
+   }).then(updatePage);
+ } 
+
   
   function tmAPI (input) {
     var APIkey = "quk7UZVuqQv8KgdTBgv0dMLjkA3IF56q"; 

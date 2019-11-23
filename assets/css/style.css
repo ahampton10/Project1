@@ -49,3 +49,13 @@ h3 {
     width: 20%; 
     margin-bottom: 5px; 
 }
+
+#tmaster {
+    float: left;
+    margin: 0 0 20px 0;
+}
+
+#teamArticles {
+    clear: both;
+    background-color: black;
+}
