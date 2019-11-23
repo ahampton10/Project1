@@ -15,8 +15,8 @@ $(document).on("click", ".statBtn", function (event) {
   //Calls on the live score API 
   
   function liveAPI(input) {
-    var liveAPIKEY = "&APIkey=8ef0c87feea2c18987d88b3c304eff3fae2a958f8e81673eecac0651a83bbfa1"; 
-    var queryURL = "https://allsportsapi.com/api/basketball/?met=Livescore" + liveAPIKEY + "&q=" + input; 
+    var liveAPIKEY = "api-key=qieFEkfiJNxxx27yEHvLk1rDZyOKPHbI"; 
+    var queryURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?" + liveAPIKEY +"&&q=" + input; 
   
     $.ajax ({
         url: queryURL, 
@@ -25,12 +25,14 @@ $(document).on("click", ".statBtn", function (event) {
        console.log(response); 
        console.log (queryURL); 
   
-        // var trTag = $("<tr>");
-        // var rowTag = $("<td>");
-        // var titleTag = $("<td>").text(result[i].stats);
-        // var content = $("<a>").attr({"href": result[i].url, "target": "_blank", class : "statsContent"});
-        // var contentTag = $("<td>");
-     
+       for (var i = 0; i < 10; i++) {
+        var trTag = $("<tr>");
+        var rowTag = $("<td>");
+        var titleTag = $("<td>").text(result[i].stats);
+        var content = $("<a>").attr({"href": result[i].url, "target": "_blank", class : "statsContent"});
+        var contentTag = $("<td>");
+
+    
         
         content.text(result[i].content);
         
